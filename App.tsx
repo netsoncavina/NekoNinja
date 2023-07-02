@@ -1,12 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { PaperProvider } from "react-native-paper";
+import Topbar from "./components/Topbar/Topbar";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <PaperProvider>
       <StatusBar style="auto" />
-    </View>
+      <Topbar />
+
+      <View style={styles.container}></View>
+    </PaperProvider>
   );
 }
 
