@@ -10,3 +10,8 @@ export const getRecentAnimes = async () => {
   const response = await axios.get(`${baseUrl}/recent`);
   return response.data;
 };
+
+export const getAnimeInfo = async (title: string) => {
+  const response = await axios.get(`${baseUrl}/anime/${title}`);
+  return response.data;
+};
