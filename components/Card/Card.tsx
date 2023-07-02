@@ -13,6 +13,7 @@ const AnimeCard = (props: Props) => {
     <View
       style={{
         borderRadius: 10,
+        // marginRight: 15,
       }}
     >
       <Image
@@ -30,7 +31,10 @@ const AnimeCard = (props: Props) => {
           borderBottomRightRadius: 10,
         }}
       >
-        <Text style={{ fontSize: 24, fontWeight: "bold", color: "#d31a48" }}>
+        <Text
+          style={{ fontSize: 24, fontWeight: "bold", color: "#d31a48" }}
+          numberOfLines={2}
+        >
           {props.animeTitle}
         </Text>
         <Text style={{ fontSize: 15, fontWeight: "bold", color: "gray" }}>
