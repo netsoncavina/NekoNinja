@@ -1,6 +1,13 @@
 import Carousel from "react-native-snap-carousel";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import Card from "../../components/Card/Card";
 
 const SLIDER_WIDTH =
@@ -21,12 +28,14 @@ function carouselCard({ item, index }: Props) {
   }
 
   return (
-    <Card
-      animeId={item.id}
-      animeImg={item.coverImage || item.anime.coverImage}
-      animeTitle={title}
-      releaseDate={item.year}
-    />
+    <TouchableOpacity onPress={() => {}}>
+      <Card
+        animeId={item.id}
+        animeImg={item.coverImage || item.anime.coverImage}
+        animeTitle={title}
+        releaseDate={item.year}
+      />
+    </TouchableOpacity>
   );
 }
 
