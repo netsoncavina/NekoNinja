@@ -13,11 +13,18 @@ type Props = {
 };
 
 function carouselCard({ item, index }: Props) {
+  let title = "teste";
+  if (item.title?.english === undefined || item.title?.english === null) {
+    title = item.anime.title.userPreferred;
+  } else {
+    title = item.title.english;
+  }
+
   return (
     <Card
       animeId={item.id}
-      animeImg={item.coverImage}
-      animeTitle={item.title.english}
+      animeImg={item.coverImage || item.anime.coverImage}
+      animeTitle={title}
       releaseDate={item.year}
     />
   );
