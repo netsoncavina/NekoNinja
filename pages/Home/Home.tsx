@@ -1,6 +1,5 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
-import Card from "../../components/Card/Card";
 import Carousel from "./Carousel";
 import { getPopularAnimes, getRecentAnimes } from "../../api/api";
 
@@ -18,34 +17,36 @@ const Home = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          fontSize: 35,
-          color: "white",
-          fontFamily: "sans-serif-medium",
-          paddingBottom: 10,
-        }}
-      >
-        Animes Populares
-      </Text>
-      <View style={{ flexDirection: "row" }}>
-        <Carousel data={popularAnimes} />
+    <ScrollView style={{ backgroundColor: "#212427" }}>
+      <View style={styles.container}>
+        <Text
+          style={{
+            fontSize: 35,
+            color: "white",
+            fontFamily: "sans-serif-medium",
+            paddingBottom: 10,
+          }}
+        >
+          Animes Populares
+        </Text>
+        <View style={{ flexDirection: "row" }}>
+          <Carousel data={popularAnimes} />
+        </View>
+        <Text
+          style={{
+            fontSize: 35,
+            color: "white",
+            fontFamily: "sans-serif-medium",
+            paddingBottom: 10,
+          }}
+        >
+          Lançados Recentemente
+        </Text>
+        <View style={{ flexDirection: "row" }}>
+          <Carousel data={recentAnimes} />
+        </View>
       </View>
-      <Text
-        style={{
-          fontSize: 35,
-          color: "white",
-          fontFamily: "sans-serif-medium",
-          paddingBottom: 10,
-        }}
-      >
-        Lançados Recentemente
-      </Text>
-      <View style={{ flexDirection: "row" }}>
-        <Carousel data={recentAnimes} />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
