@@ -4,7 +4,11 @@ import { Appbar, Button } from "react-native-paper";
 import Search from "./Search";
 import Settings from "./Settings";
 
-const Topbar = () => {
+interface Props {
+  showTopbar: boolean;
+}
+
+const Topbar = (props: Props) => {
   const [visible, setVisible] = React.useState(false);
 
   const openMenu = () => setVisible(true);
@@ -18,6 +22,7 @@ const Topbar = () => {
         marginLeft: 10,
         marginRight: 10,
         height: 70,
+        display: props.showTopbar ? "flex" : "none",
       }}
     >
       <Image
