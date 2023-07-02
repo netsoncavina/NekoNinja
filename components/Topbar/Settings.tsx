@@ -16,6 +16,7 @@ const Settings = ({ visible, setVisible, openMenu, closeMenu }: Props) => {
         style={{
           flexDirection: "row",
           justifyContent: "center",
+          marginRight: 10,
         }}
       >
         <Menu

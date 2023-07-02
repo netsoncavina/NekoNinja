@@ -19,15 +19,16 @@ const Topbar = (props: Props) => {
       style={{
         backgroundColor: "#212427",
         justifyContent: "space-between",
-        marginLeft: 10,
-        marginRight: 10,
+        // marginLeft: 10,
+        // marginRight: 10,
         height: 70,
         display: props.showTopbar ? "flex" : "none",
+        borderBottomWidth: 1,
       }}
     >
       <Image
         source={require("../../assets/neko-ninja.png")}
-        style={{ width: 50, height: 50 }}
+        style={{ width: 50, height: 50, marginLeft: 10 }}
       />
       <Search />
       <Settings
