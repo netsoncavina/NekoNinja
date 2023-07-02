@@ -1,16 +1,50 @@
-import { StyleSheet, View } from "react-native";
-import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
+import Carousel from "./Carousel";
+import { getPopularAnimes, getRecentAnimes } from "../../api/api";
 
 const Home = () => {
+  const [popularAnimes, setPopularAnimes] = useState([]);
+  const [recentAnimes, setRecentAnimes] = useState([]);
+
+  useEffect(() => {
+    getPopularAnimes().then((res) => {
+      setPopularAnimes(res.data);
+    });
+    getRecentAnimes().then((res) => {
+      setRecentAnimes(res.data);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Card
-        animeId="clfrxcp4k05y4kslugje476e5"
-        animeImg="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-YJvLbgJQPCoI.jpg"
-        animeTitle="Naruto"
-        releaseDate="2002"
-      />
+      <Text
+        style={{
+          fontSize: 35,
+          color: "white",
+          fontFamily: "sans-serif-medium",
+          paddingBottom: 10,
+        }}
+      >
+        Animes Populares
+      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <Carousel data={popularAnimes} />
+      </View>
+      <Text
+        style={{
+          fontSize: 35,
+          color: "white",
+          fontFamily: "sans-serif-medium",
+          paddingBottom: 10,
+        }}
+      >
+        Lançados Recentemente
+      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <Carousel data={recentAnimes} />
+      </View>
     </View>
   );
 };
@@ -21,8 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#212427",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    flexDirection: "column",
+    padding: 10,
   },
 });
