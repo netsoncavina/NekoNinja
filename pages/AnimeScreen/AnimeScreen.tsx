@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { getAnimeInfo } from "../../api/api";
 import Tag from "../../components/Tag/Tag";
+import { Skeleton } from "@rneui/themed";
 
 interface Props {
   animeTitle: string;
@@ -33,11 +34,14 @@ const AnimeScreen = ({ route, navigation }: any) => {
     color: "",
   });
   const [width, setWidth] = useState(Dimensions.get("window").width);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAnimeInfo(animeId).then((res) => {
-      setAnime(res);
-      //   console.log(anime);
+      setTimeout(() => {
+        setLoading(false);
+        setAnime(res);
+      }, 1000);
     });
   }, []);
 
@@ -74,16 +78,37 @@ const AnimeScreen = ({ route, navigation }: any) => {
             style={{
               flexDirection: "column",
               paddingLeft: 10,
-              //   flexWrap: "wrap",
               justifyContent: "center",
               alignItems: "center",
               height: 250,
               width: 150,
             }}
           >
-            {anime.genre?.map((genre: string) => (
-              <Tag text={genre} color={anime.color} />
-            ))}
+            {loading ? (
+              <>
+                {Array(5)
+                  .fill(0)
+                  .map((_, index) => (
+                    <Skeleton
+                      animation="wave"
+                      width={120}
+                      height={20}
+                      style={{
+                        width: 120,
+                        borderRadius: 20,
+                        padding: 5,
+                        margin: 5,
+                      }}
+                    />
+                  ))}
+              </>
+            ) : (
+              <>
+                {anime.genre?.map((genre: string) => (
+                  <Tag text={genre} color={anime.color} />
+                ))}
+              </>
+            )}
           </View>
           <Text
             style={{
@@ -93,7 +118,9 @@ const AnimeScreen = ({ route, navigation }: any) => {
               paddingLeft: 10,
             }}
           >
-            {anime.episodes ? `${anime.episodes?.length} episódios` : " "}
+            {anime.episodes.length > 0
+              ? `${anime.episodes?.length} episódios`
+              : " "}
           </Text>
         </View>
       </View>
@@ -110,11 +137,27 @@ const AnimeScreen = ({ route, navigation }: any) => {
         >
           Sinopse
         </Text>
-        <Text style={{ fontSize: 15, color: "white" }}>
-          {anime.description
-            ? anime.description?.replace(/<[^>]*>?/gm, "") || "Sem sinopse"
-            : null}
-        </Text>
+
+        {loading ? (
+          <>
+            {Array(10)
+              .fill(0)
+              .map((_, index) => (
+                <Skeleton
+                  animation="wave"
+                  width={width - 50}
+                  height={20}
+                  style={{ marginTop: 10 }}
+                />
+              ))}
+          </>
+        ) : (
+          <Text style={{ fontSize: 15, color: "white" }}>
+            {anime.description
+              ? anime.description?.replace(/<[^>]*>?/gm, "") || "Sem sinopse"
+              : null}
+          </Text>
+        )}
       </View>
     </ScrollView>
   );
