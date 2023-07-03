@@ -10,7 +10,7 @@ const Tag = ({ text, color }: Props) => {
   return (
     <View
       style={{
-        width: 100,
+        width: 120,
         backgroundColor: color,
         borderRadius: 20,
         padding: 5,
@@ -25,6 +25,7 @@ const Tag = ({ text, color }: Props) => {
           color: "white",
           fontFamily: "sans-serif-medium",
         }}
+        numberOfLines={1}
       >
         {text}
       </Text>
