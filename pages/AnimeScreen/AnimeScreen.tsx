@@ -198,6 +198,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
               .fill(0)
               .map((_, index) => (
                 <Skeleton
+                  key={index}
                   animation="wave"
                   width={width - 50}
                   height={20}
