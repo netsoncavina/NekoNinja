@@ -142,7 +142,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
               fontFamily: "sans-serif-medium",
             }}
           >
-            Lançamento: {releaseDate}
+            {releaseDate ? `Lançamento: ${releaseDate}` : null}
           </Text>
         )}
       </View>
