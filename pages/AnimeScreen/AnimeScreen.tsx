@@ -90,6 +90,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
                   .fill(0)
                   .map((_, index) => (
                     <Skeleton
+                      key={index}
                       animation="wave"
                       width={120}
                       height={20}
@@ -104,8 +105,8 @@ const AnimeScreen = ({ route, navigation }: any) => {
               </>
             ) : (
               <>
-                {anime.genre?.map((genre: string) => (
-                  <Tag text={genre} color={anime.color} />
+                {anime.genre?.map((genre: string, index) => (
+                  <Tag key={index} text={genre} color={anime.color} />
                 ))}
               </>
             )}
