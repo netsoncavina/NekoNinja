@@ -6,6 +6,9 @@ import Settings from "./Settings";
 
 interface Props {
   showTopbar: boolean;
+  searchData?: any;
+  setSearchData?: any;
+  setQueryLength?: any;
 }
 
 const Topbar = (props: Props) => {
@@ -30,7 +33,10 @@ const Topbar = (props: Props) => {
         source={require("../../assets/neko-ninja.png")}
         style={{ width: 50, height: 50, marginLeft: 10 }}
       />
-      <Search />
+      <Search
+        setSearchData={props.setSearchData}
+        setQueryLength={props.setQueryLength}
+      />
       <Settings
         visible={visible}
         setVisible={setVisible}
