@@ -15,3 +15,8 @@ export const getAnimeInfo = async (title: string) => {
   const response = await axios.get(`${baseUrl}/anime/${title}`);
   return response.data;
 };
+
+export const searchAnime = async (title: string) => {
+  const response = await axios.get(`${baseUrl}/search/${title}`);
+  return response.data;
+};
