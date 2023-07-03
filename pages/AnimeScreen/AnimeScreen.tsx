@@ -23,6 +23,7 @@ interface Anime {
   description: string;
   episodes: string[];
   color: string;
+  status?: string;
 }
 
 const AnimeScreen = ({ route, navigation }: any) => {
@@ -32,6 +33,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
     description: "",
     episodes: [],
     color: "",
+    status: "",
   });
   const [width, setWidth] = useState(Dimensions.get("window").width);
   const [loading, setLoading] = useState(true);
@@ -111,20 +113,71 @@ const AnimeScreen = ({ route, navigation }: any) => {
               </>
             )}
           </View>
+        </View>
+      </View>
+      <View
+        style={{
+          marginTop: 15,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            color: "white",
+            fontFamily: "sans-serif-medium",
+          }}
+        >
+          {anime.episodes.length > 0
+            ? `${anime.episodes?.length} episódios`
+            : " "}
+        </Text>
+        {loading ? null : (
           <Text
             style={{
               fontSize: 15,
               color: "white",
               fontFamily: "sans-serif-medium",
-              paddingLeft: 10,
             }}
           >
-            {anime.episodes.length > 0
-              ? `${anime.episodes?.length} episódios`
-              : " "}
+            Lançamento: {releaseDate}
           </Text>
-        </View>
+        )}
       </View>
+
+      {anime.status ? (
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              color: "white",
+              fontFamily: "sans-serif-medium",
+            }}
+          >
+            Status:
+          </Text>
+          <Tag
+            text={anime.status}
+            color={
+              anime.status === "RELEASING"
+                ? "#03cafc"
+                : anime.status === "FINISHED"
+                ? "#00ff00"
+                : "#ff0000"
+            }
+          />
+        </View>
+      ) : (
+        ""
+      )}
       <View
         style={{ flexDirection: "column", paddingTop: 20, paddingBottom: 50 }}
       >
