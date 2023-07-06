@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { Skeleton } from "@rneui/themed";
 import { getEpisodeInfo } from "../../api/api";
 
 interface Episode {
@@ -12,6 +13,7 @@ interface Episode {
 
 const EpisodeDetailScreen = ({ route }: any) => {
   const { episodeId } = route.params;
+  const [loading, setLoading] = useState(true);
   const [episode, setEpisode] = useState<Episode>({
     image: "",
     number: "",
@@ -23,61 +25,126 @@ const EpisodeDetailScreen = ({ route }: any) => {
   useEffect(() => {
     getEpisodeInfo(episodeId).then((res) => {
       setEpisode(res);
+      setLoading(false);
     });
   }, []);
 
   return (
-    <>
+    <ScrollView>
       <View
         style={{ justifyContent: "center", alignItems: "center", padding: 20 }}
       >
-        <Image
-          source={{ uri: episode.image }}
-          style={{ width: 200, height: 200 }}
+        {loading ? (
+          <>
+            <Skeleton
+              animation="wave"
+              width={200}
+              height={200}
+              style={{
+                borderRadius: 20,
+                padding: 5,
+                margin: 5,
+              }}
+            />
+            <Skeleton
+              animation="wave"
+              width={330}
+              height={100}
+              style={{
+                borderRadius: 20,
+                padding: 5,
+                margin: 5,
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Image
+              source={{ uri: episode.image }}
+              style={{ width: 200, height: 200, borderRadius: 20 }}
+            />
+            <Text
+              style={{
+                color: "white",
+                fontSize: 30,
+                fontWeight: "bold",
+                padding: 10,
+                textAlign: "center",
+              }}
+            >
+              {episode.number} - {episode.title}
+            </Text>
+          </>
+        )}
+      </View>
+      {loading ? (
+        <Skeleton
+          animation="wave"
+          width={200}
+          height={40}
+          style={{
+            borderRadius: 20,
+            padding: 5,
+            margin: 5,
+          }}
         />
+      ) : (
         <Text
           style={{
             color: "white",
-            fontSize: 30,
-            fontWeight: "bold",
-            padding: 10,
-            textAlign: "center",
+            fontSize: 20,
+            paddingLeft: 10,
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
           }}
         >
-          {episode.number} - {episode.title}
+          Aired at{" "}
+          {episode.airedAt.split("T")[0].split("-").reverse().join("/")}
         </Text>
-      </View>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          paddingLeft: 10,
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-        }}
-      >
-        Aired at {episode.airedAt.split("T")[0].split("-").reverse().join("/")}
-      </Text>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          fontWeight: "bold",
-          padding: 10,
-        }}
-      >
-        Description
-      </Text>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          padding: 10,
-        }}
-      >
-        {episode.description}
-      </Text>
-    </>
+      )}
+      {loading ? null : (
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+            fontWeight: "bold",
+            padding: 10,
+          }}
+        >
+          Description
+        </Text>
+      )}
+      {loading ? (
+        <>
+          {Array(5)
+            .fill(0)
+            .map((_, index) => (
+              <Skeleton
+                key={index}
+                animation="wave"
+                width={380}
+                height={20}
+                style={{
+                  marginTop: 10,
+                  borderRadius: 20,
+                  //   padding: 5,
+                  margin: 5,
+                }}
+              />
+            ))}
+        </>
+      ) : (
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+            padding: 10,
+          }}
+        >
+          {episode.description}
+        </Text>
+      )}
+    </ScrollView>
   );
 };
 
