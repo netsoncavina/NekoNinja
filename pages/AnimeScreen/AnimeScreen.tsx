@@ -6,10 +6,16 @@ import {
   ScrollView,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import { getAnimeInfo } from "../../api/api";
 import Tag from "../../components/Tag/Tag";
 import { Skeleton } from "@rneui/themed";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../routes";
+import { useNavigation } from "@react-navigation/native";
+
+export type StackNavigation = StackNavigationProp<RootStackParamList>;
 
 interface Props {
   animeTitle: string;
@@ -26,7 +32,7 @@ interface Anime {
   status?: string;
 }
 
-const AnimeScreen = ({ route, navigation }: any) => {
+const AnimeScreen = ({ route }: any) => {
   const { animeTitle, animeId, animeImg, releaseDate } = route.params;
   const [anime, setAnime] = useState<Anime>({
     genre: [],
@@ -37,6 +43,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
   });
   const [width, setWidth] = useState(Dimensions.get("window").width);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation<StackNavigation>();
 
   useEffect(() => {
     getAnimeInfo(animeId).then((res) => {
@@ -130,9 +137,22 @@ const AnimeScreen = ({ route, navigation }: any) => {
             fontFamily: "sans-serif-medium",
           }}
         >
-          {anime.episodes.length > 0
-            ? `${anime.episodes?.length} episódios`
-            : " "}
+          {anime.episodes.length > 0 ? (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("EpisodesScreen", {
+                  animeTitle: animeTitle,
+                  episodes: anime.episodes,
+                  color: anime.color,
+                } as any)
+              }
+            >
+              <Tag
+                text={`${anime.episodes.length} episódios`}
+                color={anime.color + "80"}
+              />
+            </TouchableOpacity>
+          ) : null}
         </Text>
         {loading ? null : (
           <Text
@@ -153,6 +173,7 @@ const AnimeScreen = ({ route, navigation }: any) => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
+            marginTop: 20,
           }}
         >
           <Text
