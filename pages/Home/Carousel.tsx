@@ -20,22 +20,21 @@ type Props = {
 };
 
 function carouselCard({ item, index }: Props) {
-  let title = "teste";
-  if (item.title?.english === undefined || item.title?.english === null) {
-    title = item.anime.title.userPreferred;
-  } else {
-    title = item.title.english;
-  }
-
-  return (
+  return item !== undefined && item !== null ? (
     <TouchableOpacity onPress={() => {}}>
       <Card
         animeId={item.id}
         animeImg={item.coverImage || item.anime.coverImage}
-        animeTitle={title}
+        animeTitle={
+          item.title?.userPreferred ||
+          item.anime.title.userPreferred ||
+          "No title"
+        }
         releaseDate={item.year}
       />
     </TouchableOpacity>
+  ) : (
+    <View></View>
   );
 }
 
@@ -43,15 +42,9 @@ const CarouselComponent = ({ data }: any) => {
   return (
     <Carousel
       data={data}
-      renderItem={carouselCard}
+      renderItem={carouselCard as any}
       sliderWidth={SLIDER_WIDTH}
       itemWidth={ITEM_WIDTH}
-      // inactiveSlideShift={0}
-      // useScrollView={true}
-      // loop={true}
-      // autoplay={true}
-      // autoplayDelay={500}
-      // autoplayInterval={200}
     />
   );
 };

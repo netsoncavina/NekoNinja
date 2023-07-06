@@ -18,7 +18,7 @@ const AnimeCard = (props: Props) => {
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("AnimeScreen", {
-          animeTitle: props.animeTitle,
+          animeTitle: props.animeTitle || "No title",
           animeId: props.animeId,
           animeImg: props.animeImg,
           releaseDate: props.releaseDate,
@@ -50,7 +50,7 @@ const AnimeCard = (props: Props) => {
             style={{ fontSize: 24, fontWeight: "bold", color: "#d31a48" }}
             numberOfLines={2}
           >
-            {props.animeTitle}
+            {props.animeTitle || "No title"}
           </Text>
           <Text style={{ fontSize: 15, fontWeight: "bold", color: "gray" }}>
             {props.releaseDate}
