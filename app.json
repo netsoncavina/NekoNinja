@@ -4,7 +4,7 @@
     "slug": "NekoNinja",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/neko-ninja.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/app-splash.png",
