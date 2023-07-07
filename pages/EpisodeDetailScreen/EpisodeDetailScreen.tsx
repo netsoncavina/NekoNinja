@@ -29,7 +29,22 @@ const EpisodeDetailScreen = ({ route }: any) => {
     });
   }, []);
 
-  return (
+  return episode.title === null &&
+    episode.description === null &&
+    episode.airedAt === null &&
+    episode.image === null ? (
+    <View
+      style={{ justifyContent: "center", alignItems: "center", height: "80%" }}
+    >
+      <Text style={{ color: "white", fontSize: 20, padding: 10 }}>
+        No data about this episode
+      </Text>
+      <Image
+        source={require("../../assets/sad.png")}
+        style={{ width: 200, height: 200 }}
+      />
+    </View>
+  ) : (
     <ScrollView>
       <View
         style={{ justifyContent: "center", alignItems: "center", padding: 20 }}
@@ -98,8 +113,10 @@ const EpisodeDetailScreen = ({ route }: any) => {
             alignItems: "flex-end",
           }}
         >
-          Aired at{" "}
-          {episode.airedAt.split("T")[0].split("-").reverse().join("/")}
+          {episode.airedAt === null
+            ? "No date"
+            : "Aired at " +
+              episode.airedAt.split("T")[0].split("-").reverse().join("/")}
         </Text>
       )}
       {loading ? null : (
