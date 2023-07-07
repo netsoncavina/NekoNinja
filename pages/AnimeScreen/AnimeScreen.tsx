@@ -48,10 +48,8 @@ const AnimeScreen = ({ route }: any) => {
   useEffect(() => {
     searchAnime(animeTitle).then((res) => {
       getAnimeInfo(res.data[0].id).then((res) => {
-        setTimeout(() => {
-          setLoading(false);
-          setAnime(res);
-        }, 1000);
+        setLoading(false);
+        setAnime(res);
       });
     });
   }, []);
