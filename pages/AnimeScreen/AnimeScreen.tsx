@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { getAnimeInfo } from "../../api/api";
+import { getAnimeInfo, searchAnime } from "../../api/api";
 import Tag from "../../components/Tag/Tag";
 import { Skeleton } from "@rneui/themed";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -46,11 +46,13 @@ const AnimeScreen = ({ route }: any) => {
   const navigation = useNavigation<StackNavigation>();
 
   useEffect(() => {
-    getAnimeInfo(animeId).then((res) => {
-      setTimeout(() => {
-        setLoading(false);
-        setAnime(res);
-      }, 1000);
+    searchAnime(animeTitle).then((res) => {
+      getAnimeInfo(res.data[0].id).then((res) => {
+        setTimeout(() => {
+          setLoading(false);
+          setAnime(res);
+        }, 1000);
+      });
     });
   }, []);
 
