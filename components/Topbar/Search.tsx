@@ -25,7 +25,20 @@ const Search = (props: Props) => {
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-      style={{ width: 280, height: 50 }}
+      style={{
+        width: 280,
+        height: 50,
+        backgroundColor: "#212427",
+        borderColor: "#1a1c1f",
+        borderWidth: 2,
+      }}
+      iconColor="white"
+      placeholderTextColor="white"
+      inputStyle={{
+        color: "white",
+
+        paddingBottom: 10,
+      }}
     />
   );
 };
