@@ -25,7 +25,7 @@ const Search = (props: Props) => {
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-      style={{ width: 200, height: 50 }}
+      style={{ width: 280, height: 50 }}
     />
   );
 };

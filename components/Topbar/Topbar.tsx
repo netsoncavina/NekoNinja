@@ -27,6 +27,7 @@ const Topbar = (props: Props) => {
         height: 70,
         display: props.showTopbar ? "flex" : "none",
         borderBottomWidth: 1,
+        paddingRight: 15,
       }}
     >
       <Image
@@ -37,12 +38,12 @@ const Topbar = (props: Props) => {
         setSearchData={props.setSearchData}
         setQueryLength={props.setQueryLength}
       />
-      <Settings
+      {/* <Settings
         visible={visible}
         setVisible={setVisible}
         openMenu={openMenu}
         closeMenu={closeMenu}
-      />
+      /> */}
     </Appbar.Header>
   );
 };
