@@ -9,11 +9,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getAnimeInfo, searchAnime } from "../../api/api";
-import Tag from "../../components/Tag/Tag";
 import { Skeleton } from "@rneui/themed";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../routes";
 import { useNavigation } from "@react-navigation/native";
+import Tag from "../../components/Tag/Tag";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 export type StackNavigation = StackNavigationProp<RootStackParamList>;
 
@@ -63,6 +64,7 @@ const AnimeScreen = ({ route }: any) => {
         display: "flex",
       }}
     >
+      <Breadcrumb pages={[animeTitle]} />
       <View style={{ flexDirection: "row" }}>
         <Image
           source={{ uri: animeImg }}
