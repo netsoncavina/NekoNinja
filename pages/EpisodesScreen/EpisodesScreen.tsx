@@ -40,7 +40,7 @@ const EpisodesScreen = ({ route }: any) => {
           margin: 10,
         }}
       >
-        Lista de episódios
+        List of Episodes
       </Text>
       <View
         style={{
