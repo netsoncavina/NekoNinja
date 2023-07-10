@@ -32,7 +32,7 @@ const Home = () => {
             paddingBottom: 10,
           }}
         >
-          Animes Populares
+          Popular Anime
         </Text>
         {loading ? (
           <View
@@ -60,10 +60,11 @@ const Home = () => {
             fontSize: 35,
             color: "white",
             fontFamily: "sans-serif-medium",
+            paddingTop: 20,
             paddingBottom: 10,
           }}
         >
-          Lançados Recentemente
+          Recently Released
         </Text>
         {loading ? (
           <View
