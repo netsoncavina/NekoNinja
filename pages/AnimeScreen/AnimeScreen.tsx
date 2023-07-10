@@ -150,7 +150,7 @@ const AnimeScreen = ({ route }: any) => {
               }
             >
               <Tag
-                text={`${anime.episodes.length} episódios`}
+                text={`${anime.episodes.length} episodes`}
                 color={anime.color + "80"}
               />
             </TouchableOpacity>
@@ -164,7 +164,7 @@ const AnimeScreen = ({ route }: any) => {
               fontFamily: "sans-serif-medium",
             }}
           >
-            {releaseDate ? `Lançamento: ${releaseDate}` : null}
+            {releaseDate ? `Release year: ${releaseDate}` : null}
           </Text>
         )}
       </View>
@@ -212,7 +212,7 @@ const AnimeScreen = ({ route }: any) => {
             paddingBottom: 10,
           }}
         >
-          Sinopse
+          Description
         </Text>
 
         {loading ? (
