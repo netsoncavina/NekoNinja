@@ -36,7 +36,7 @@ $ npm install
 # Execute a aplicação pelo Expo
 $ npx expo start
 
-# O projeto poderá ser acessado pelo App Expo, escaneando o QR Code ou pela url
+# O projeto poderá ser acessado pelo App Expo Go, escaneando o QR Code ou pela url.
 ```
 
 
