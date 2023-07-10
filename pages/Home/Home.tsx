@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Carousel from "./Carousel";
 import { getPopularAnimes, getRecentAnimes } from "../../api/api";
 import { Skeleton } from "@rneui/themed";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const [popularAnimes, setPopularAnimes] = useState([]);
@@ -88,6 +89,7 @@ const Home = () => {
           </View>
         )}
       </View>
+      <Footer />
     </ScrollView>
   );
 };
