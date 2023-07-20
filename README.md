@@ -53,7 +53,7 @@ $ npx expo start
 ---
 
 
- <img style="border-radius: 50%;" src="https://instagram.fcgh19-1.fna.fbcdn.net/v/t51.2885-19/357421614_2340815992973538_8373416775403852759_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fcgh19-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=FXNijReEvb0AX-nZBXE&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfD4b9Qk0DWR1lwe9YSoEGmVsnrqyY25OXPrl4gmFYpWdw&oe=64B23010&_nc_sid=ee9879" width="100px;" alt=""/>
+ <img style="border-radius: 50%;" src="https://github.com/netsoncavina/NekoNinja/assets/1374081/11a7acad-3e08-4ae9-9043-e2f224200b38" width="100px;" alt=""/>
 
 
 Feito por Netson Cavina 👋🏽 Entre em contato!
